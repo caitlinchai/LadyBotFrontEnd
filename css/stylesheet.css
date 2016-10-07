@@ -1,0 +1,62 @@
+body{
+  font-family: 'Helvetica';
+}
+
+#phone {
+  background-image: url('../assets/phoneFrame.png');
+  background-size: cover;
+  width: 300px;
+  height: 634px;
+  margin: 10% auto;
+  box-sizing: border-box;
+  padding: 72px 13px 73px 12px;
+  position: relative;
+}
+
+#screen {
+  background: red;
+  width: 100%;
+  height: 100%;
+}
+
+#msgs{
+  height: 385px;
+}
+
+#screen textarea {
+  width: 100%;
+  height: 80px;
+  box-sizing: border-box;
+  font-size: 16px;
+  padding: 10px;
+}
+
+#status_bar {
+  padding: 3px 10px;
+  height: 18px;
+  background: #666666;
+  font-size: 14px;
+}
+
+#status_bar #signal {
+  float: left;
+}
+
+#status_bar #signal .fa-wifi {
+  margin-left: 5px;
+}
+
+#status_bar #signal .fa-circle {
+  font-size: 50%;
+  margin-right: -2px;
+  position: relative;
+  top: -2px;
+}
+
+#status_bar #time {
+  text-align: center;
+}
+
+#status_bar #battery {
+  float: right;
+}
