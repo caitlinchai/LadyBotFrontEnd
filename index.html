@@ -25,7 +25,11 @@
           </div>
           <div id="time">{{time}}</div>
         </div> <!-- status_bar -->
-        <div id="msgs"></div>
+        <div id="msgs">
+          <div ng-for="message in messages" ng-class="['message', message.side]">
+            {{message.text}}
+          </div>
+        </div>
         <textarea></textarea>
       </div>
     </div>
