@@ -31,15 +31,20 @@
           LadyBot
         </div>
         <div id="msg_scroller" ng-style="msgsStyles">
+          <span id="bottom_aligner"></span>
           <div id="msgs">
             <div class="msg {{m.side}}" ng-repeat="m in messages">
-              <div class="content">
+              <img ng-if="m.side==='left'" src="assets/LadyBot_1.png">
+              <span ng-if="m.side === 'left'" class="left-triangle"></span><div class="content">
                 {{m.content}}
-              </div><span class="triangle"></span>
+              </div><span ng-if="m.side === 'right'" class="right-triangle"></span>
             </div>
           </div>
         </div>
-        <textarea ng-keypress="enter($event)" ng-model="text"></textarea>
+        <div id="textarea_wrapper">
+          <textarea ng-keypress="enter($event)" ng-model="text"></textarea>
+          <button id="send" ng-click="send()">Send</button>
+        </div>
       </div>
     </div>
   </div>

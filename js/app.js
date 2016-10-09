@@ -1,16 +1,26 @@
 var app = angular.module('LadyBot',[]);
 
-app.controller('MainCtrl', function($scope){
+app.controller('MainCtrl', function($scope, $timeout){
   $scope.messages = [];
   $scope.text = "";
+  $scope.send = send;
+
   $scope.enter = function(event){
     if(event.which === 13 && $scope.text){
       event.preventDefault();
-      $scope.messages.push({content: $scope.text, side: 'right'});
-      console.log($scope.messages);
-      $scope.text="";
+      send();
     }
   };
+
+  function send(){
+    $scope.messages.push({content: $scope.text, side:"right"});
+    $scope.text="";
+
+    $timeout(function(){
+      var scroller = document.getElementById("msg_scroller");
+      scroller.scrollTop = scroller.scrollHeight;
+    }, 0, false);
+  }
 
   function updateTime(){
     var d = new Date();
@@ -23,5 +33,5 @@ app.controller('MainCtrl', function($scope){
     $scope.time = hours + ":" + minutes + " " + ampm;
   }
   updateTime();
-  setInterval(updateTime, 10000)
+  setInterval(updateTime, 10000);
 });

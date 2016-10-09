@@ -14,7 +14,6 @@ body{
 }
 
 #screen {
-  background: lightblue;
   width: 100%;
   height: 100%;
 }
@@ -22,16 +21,30 @@ body{
 #msg_scroller{
   height: 344px;
   overflow-y: scroll;
+  white-space: nowrap;
+}
+
+#bottom_aligner{
+  height: 98%;
+  display: inline-block;
+  width: 0;
+}
+
+#msgs{
+  vertical-align: bottom;
+  display: inline-block;
+  width: 98%;
 }
 
 .msg{
-  margin: 6px;
+  margin: 10px 5px 15px;
+  white-space: normal;
 }
 
 .msg .content{
   display: inline-block;
   box-sizing: border-box;
-  max-width: 90%;
+  max-width: 80%;
   padding: 10px;
   border-radius: 10px;
   word-break: break-word;
@@ -46,7 +59,7 @@ body{
   background: red;
 }
 
-.msg.right .triangle{
+.msg.right .right-triangle{
   border-bottom: 10px solid red;
   border-right: 10px solid transparent;
 }
@@ -55,22 +68,50 @@ body{
   text-align: left;
 }
 
+.msg.left img{
+   height: 38px;
+   margin-left: 3px;
+   vertical-align: bottom;
+   position: relative;
+   top: 10px;
+}
+
 .msg.left .content{
   border-bottom-left-radius: 0;
   background: blue;
 }
 
-.msg.left .triangle{
+.msg.left .left-triangle{
   border-bottom: 10px solid blue;
   border-left: 10px solid transparent;
 }
 
-#screen textarea {
-  width: 100%;
+
+#textarea_wrapper{
+  border-top: 1px solid #EAEBEA;
+  background: #f7fafb;
   height: 80px;
-  box-sizing: border-box;
+}
+
+#textarea_wrapper textarea {
+  resize: none;
+  margin: 4px 2px 4px 5px;
+  width: 70%;
+  height: 49px;
+  border: 1px solid #EAEBEA;
   font-size: 16px;
   padding: 10px;
+}
+
+#send{
+  font-size: 14px;
+  font-weight: bold;
+  color: #549ADD;
+  height: 100%;
+  box-sizing: border-box;
+  vertical-align: top;
+  background: none;
+  border: none;
 }
 
 #status_bar {
@@ -108,4 +149,6 @@ body{
   background: #F7FAFB;
   font-size: 22px;
   padding: 8px;
+  border-bottom: 1px solid #EAEBEA;
+
 }
