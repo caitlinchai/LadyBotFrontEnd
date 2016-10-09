@@ -19,8 +19,50 @@ body{
   height: 100%;
 }
 
-#msgs{
-  height: 385px;
+#msg_scroller{
+  height: 344px;
+  overflow-y: scroll;
+}
+
+.msg{
+  margin: 6px;
+}
+
+.msg .content{
+  display: inline-block;
+  box-sizing: border-box;
+  max-width: 90%;
+  padding: 10px;
+  border-radius: 10px;
+  word-break: break-word;
+}
+
+.msg.right{
+  text-align: right;
+}
+
+.msg.right .content{
+  border-bottom-right-radius: 0;
+  background: red;
+}
+
+.msg.right .triangle{
+  border-bottom: 10px solid red;
+  border-right: 10px solid transparent;
+}
+
+.msg.left{
+  text-align: left;
+}
+
+.msg.left .content{
+  border-bottom-left-radius: 0;
+  background: blue;
+}
+
+.msg.left .triangle{
+  border-bottom: 10px solid blue;
+  border-left: 10px solid transparent;
 }
 
 #screen textarea {

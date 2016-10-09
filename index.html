@@ -26,16 +26,20 @@
             100% <i class="fa fa-battery-full" aria-hidden="true"></i>
           </div>
           <div id="time">{{time}}</div>
-        </div> <!-- status_bar -->
+        </div>
         <div id="title">
           LadyBot
         </div>
         <div id="msg_scroller" ng-style="msgsStyles">
           <div id="msgs">
-            messages
+            <div class="msg {{m.side}}" ng-repeat="m in messages">
+              <div class="content">
+                {{m.content}}
+              </div><span class="triangle"></span>
+            </div>
           </div>
         </div>
-        <textarea></textarea>
+        <textarea ng-keypress="enter($event)" ng-model="text"></textarea>
       </div>
     </div>
   </div>
