@@ -6,6 +6,8 @@
   <link rel="stylesheet" type="text/css" href="css/stylesheet.css">
   <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
   <script src="js/app.js"></script>
+  <script src="js/directives.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
   <div ng-app="LadyBot" ng-controller="MainCtrl">
@@ -25,9 +27,12 @@
           </div>
           <div id="time">{{time}}</div>
         </div> <!-- status_bar -->
-        <div id="msgs">
-          <div ng-for="message in messages" ng-class="['message', message.side]">
-            {{message.text}}
+        <div id="title">
+          LadyBot
+        </div>
+        <div id="msg_scroller" ng-style="msgsStyles">
+          <div id="msgs">
+            messages
           </div>
         </div>
         <textarea></textarea>
