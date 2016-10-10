@@ -1,21 +1,42 @@
 var app = angular.module('LadyBot',[]);
 
-app.controller('MainCtrl', function($scope, $timeout){
-  $scope.messages = [];
+app.controller('MainCtrl', function($scope, $timeout, $http){
+  $scope.messages = [{content: "Hi! What's up? :)", side: "left"}];
   $scope.text = "";
   $scope.send = send;
 
   $scope.enter = function(event){
-    if(event.which === 13 && $scope.text){
+    if(event.which === 13){
       event.preventDefault();
       send();
     }
   };
 
   function send(){
-    $scope.messages.push({content: $scope.text, side:"right"});
-    $scope.text="";
 
+    if(!$scope.text){
+      return;
+    }
+
+    $scope.messages.push({content: $scope.text, side: "right"});
+
+    $http({
+      method:"GET",
+      url:"http://localhost:3000/receive",
+      params: {message: $scope.text}
+    }).then(function success(response){
+      $scope.messages.push({content: response.data, side: "left"});
+      scrollToBottom();
+    }, function myError(response){
+      $scope.messages.push({content:"Brb.", side:"left"});
+      scrollToBottom();
+    });
+
+    $scope.text="";
+    scrollToBottom();
+  }
+
+  function scrollToBottom(){
     $timeout(function(){
       var scroller = document.getElementById("msg_scroller");
       scroller.scrollTop = scroller.scrollHeight;
