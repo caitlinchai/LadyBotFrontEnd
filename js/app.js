@@ -1,14 +1,30 @@
 var app = angular.module('LadyBot',[]);
 
 app.controller('MainCtrl', function($scope, $timeout, $http){
+  updateTime();
+  setInterval(updateTime, 10000);
+
   $scope.messages = [];
   $scope.text = "";
   $scope.send = send;
   $timeout(firstMsg, 2000);
 
-  updateTime();
-  setInterval(updateTime, 10000);
 
+  function updateTime(){
+    var d = new Date();
+    var hours = (d.getHours()+11)%12 + 1;
+    var minutes = (d.getMinutes());
+    if(minutes < 10){
+      minutes = "0" + minutes;
+    }
+    var ampm = (d.getHours() > 12) ? "PM" : "AM"; 
+    $scope.time = hours + ":" + minutes + " " + ampm;
+  }
+  
+  function firstMsg(){
+    $scope.messages.push({content: "Hi! What's up? :)", side: "left"});
+  }
+  
   $scope.enter = function(event){
     if(event.which === 13){
       event.preventDefault();
@@ -21,7 +37,10 @@ app.controller('MainCtrl', function($scope, $timeout, $http){
       return;
     }
 
-    $scope.messages.push({content: $scope.text, side: "right"});
+    $scope.messages.push({
+      content: $scope.text, 
+      side: "right"
+    });
 
     $http({
       method:"GET",
@@ -47,17 +66,6 @@ app.controller('MainCtrl', function($scope, $timeout, $http){
     }, 0, false);
   }
 
-  function updateTime(){
-    var d = new Date();
-    var hours = (d.getHours()+11)%12 + 1;
-    var minutes = (d.getMinutes());
-    if(minutes < 10){
-      minutes = "0" + minutes;
-    }
-    var ampm = (d.getHours() > 12) ? "PM" : "AM"; 
-    $scope.time = hours + ":" + minutes + " " + ampm;
-  }
-
   function getMessage(str){
     var link_index = str.indexOf('http');
     if(link_index > -1){
@@ -67,9 +75,5 @@ app.controller('MainCtrl', function($scope, $timeout, $http){
     }else{
       return {content: str, side:"left"};
     }
-  }
-
-  function firstMsg(){
-    $scope.messages.push({content: "Hi! What's up? :)", side: "left"});
   }
 });

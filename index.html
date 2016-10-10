@@ -36,7 +36,8 @@
           <div id="msgs">
             <div class="msg {{m.side}}" ng-repeat="m in messages">
               <img ng-if="m.side==='left'" src="assets/LadyBot_1.png">
-              <span ng-if="m.side === 'left'" class="left-triangle"></span><div class="content">
+              <span ng-if="m.side === 'left'" class="left-triangle"></span>
+              <div class="content">
                 {{m.content}}<a href="{{m.link}}" target="_blank">{{m.link}}</a> 
               </div><span ng-if="m.side === 'right'" class="right-triangle"></span>
             </div>
