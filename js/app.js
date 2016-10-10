@@ -1,9 +1,11 @@
 var app = angular.module('LadyBot',[]);
 
 app.controller('MainCtrl', function($scope, $timeout, $http){
-  $scope.messages = [{content: "Hi! What's up? :)", side: "left"}];
+  $scope.messages = [];
   $scope.text = "";
   $scope.send = send;
+  $timeout(firstMsg, 2000);
+
   updateTime();
   setInterval(updateTime, 10000);
 
@@ -47,7 +49,7 @@ app.controller('MainCtrl', function($scope, $timeout, $http){
 
   function updateTime(){
     var d = new Date();
-    var hours = (d.getHours()-1)%12 + 1;
+    var hours = (d.getHours()+11)%12 + 1;
     var minutes = (d.getMinutes());
     if(minutes < 10){
       minutes = "0" + minutes;
@@ -67,4 +69,7 @@ app.controller('MainCtrl', function($scope, $timeout, $http){
     }
   }
 
+  function firstMsg(){
+    $scope.messages.push({content: "Hi! What's up? :)", side: "left"});
+  }
 });
